@@ -49,5 +49,5 @@ Lorcana's Data:
 <br><br>
 
 ## My Star Wars Unlimited Socials:
-- https://www.lumimouse.com
+- https://www.LumiMouse.com
 - https://www.youtube.com/@LumiMouseTCG
