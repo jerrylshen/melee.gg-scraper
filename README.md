@@ -22,10 +22,12 @@ Each of the games' folders contains the following:
 General Stats:
 - Star Wars Unlimited:
     - Events*: 57864
-    - Players: 533059
+    - Players: 58683
+    - Participation: 533059
 - Lorcana:
     - Events*: 85762
-    - Players: 728154
+    - Players: 81450
+    - Participation: 728154
     
 *Ignores any events with ambigious dates and ignores events outside the set time range.
 <br><br>
