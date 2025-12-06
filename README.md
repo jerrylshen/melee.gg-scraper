@@ -26,6 +26,7 @@ General Stats:
 - Lorcana:
     - Events*: 85762
     - Players: 728154
+    
 *Ignores any events with ambigious dates and ignores events outside the set time range.
 <br><br>
 
