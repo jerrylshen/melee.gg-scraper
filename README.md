@@ -19,6 +19,16 @@ Each of the games' folders contains the following:
 <br><br>
 
 # Showcasing the Weekly Charts
+General Stats:
+- Star Wars Unlimited:
+    - Events*: 57864
+    - Players: 533059
+- Lorcana:
+    - Events*: 85762
+    - Players: 728154
+*Ignores any events with ambigious dates and ignores events outside the set time range.
+<br><br>
+
 Things to be aware of:
 - Star Wars Unlimited: 
     - The game was released in 2024/03.
