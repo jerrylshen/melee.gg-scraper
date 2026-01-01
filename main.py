@@ -287,6 +287,8 @@ def scrape_events(game, driver, url, current_events, date_cutoff, filename="even
             print("Next button error", e)
             break
 
+    driver.quit()
+
 def start_scrape_events(game="StarWarsUnlimited", date_cutoff="2024/08/01"):
     events_filename = f"{game}/events.csv"
     current_events_df = get_df_from_csv(events_filename)
@@ -323,8 +325,8 @@ def start_scrape_players(game, events_filename = "combined_events_20250701"):
 
 def main():
     game = "StarWarsUnlimited" # Melee partnership started in 2024/09
-    game = "Lorcana" # Melee partnership started in 2024/08? and ended in 2025/07?
-    date_cutoff = "2024/08/01"
+    #game = "Lorcana" # Melee partnership started in 2024/08? and ended in 2025/07?
+    date_cutoff = "2026/01/01"
 
     start_scrape_events(game, date_cutoff)
     events_filename = f"{game}/events.csv"

@@ -24,7 +24,7 @@ def plot(filename):
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
 
                 # --- Only include data starting from Jan 2024 ---
-                if date < datetime(2024, 1, 1) or date.year > datetime.now().year:
+                if date < datetime(2024, 1, 1) or date > datetime.now():
                     continue
 
                 if date.year < 2024 or date.year > datetime.now().year:
@@ -76,7 +76,7 @@ def plot(filename):
     plt.grid(True)
     plt.tight_layout()
 
-    plt.savefig(f"{game}/{game_dict[game]}_monthly_players_20251202.png")
+    plt.savefig(f"{game}/{game_dict[game]}_monthly_players_20260101.png")
     plt.show()
 
 

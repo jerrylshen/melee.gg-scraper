@@ -24,7 +24,7 @@ def plot(game, filename):
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
 
                 # Only include 2024–current year
-                if date.year < 2024 or date.year > datetime.now().year:
+                if date.year < 2024 or date > datetime.now():
                     continue
 
                 # Find the Monday of the week
@@ -107,7 +107,7 @@ def plot(game, filename):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     
-    plt.savefig(f"{game}/{game_dict[game]}_weekly_players_20251202.png")
+    plt.savefig(f"{game}/{game_dict[game]}_weekly_players_20260101.png")
     plt.show()
 
 

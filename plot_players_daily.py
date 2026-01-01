@@ -1,6 +1,6 @@
 import csv
 from collections import Counter, defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime, date
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as ticker
@@ -22,9 +22,8 @@ def plot(filename):
             date_str = row["DATE"]
             try:
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
-
                 # Only include 2024–current year
-                if date.year < 2024 or date.year > datetime.now().year:
+                if date < datetime(2024, 1, 1) or date > datetime.today():
                     continue
 
                 day_key = date.strftime("%Y-%m-%d")
@@ -101,7 +100,7 @@ def plot(filename):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
 
-    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20251202.png")
+    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20260101.png")
     plt.show()
 
 game = "StarWarsUnlimited"
