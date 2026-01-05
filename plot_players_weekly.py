@@ -24,7 +24,7 @@ def plot(game, filename):
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
 
                 # Only include 2024–current year
-                if date.year < 2024 or date > datetime.now():
+                if date.year < 2024 or date > datetime.today():
                     continue
 
                 # Find the Monday of the week

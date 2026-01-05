@@ -24,7 +24,7 @@ def plot(filename):
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
 
                 # --- Only include data starting from Jan 2024 ---
-                if date < datetime(2024, 1, 1) or date > datetime.now():
+                if date < datetime(2024, 1, 1) or date > datetime.today():
                     continue
 
                 if date.year < 2024 or date.year > datetime.now().year:
