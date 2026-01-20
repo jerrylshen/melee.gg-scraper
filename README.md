@@ -49,7 +49,7 @@ Explanation of the Legend:
 <br><br>
 
 Star Wars Unlimited's Data:
-- Scraped on 2025/12/03
+- Scraped on 2026/01/02
 - Only scraped starting from 2024/08 and onward.
 
 ![SWU Weekly Data](StarWarsUnlimited/SWU_weekly_players_20260101.png)
