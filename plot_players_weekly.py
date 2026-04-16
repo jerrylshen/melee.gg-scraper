@@ -24,7 +24,7 @@ def plot(game, filename):
                 date = datetime.strptime(date_str.strip(), "%Y/%m/%d")
 
                 # Only include 2024–current year
-                if date.year < 2024 or date > datetime.today():
+                if date.year < 2024 or date > datetime.now():
                     continue
 
                 # Find the Monday of the week
@@ -74,7 +74,7 @@ def plot(game, filename):
     plt.plot(all_weeks, unique_counts, marker="s", color="orange", label="Unique Players")
 
     plt.title(f"{game_dict[game]} Weekly Player Statistics (Monday-Sunday)", fontsize=12)
-    plt.xlabel("Labels: Every 2nd Week", fontsize=10)
+    plt.xlabel("Weekly", fontsize=10)
     plt.ylabel("Count", fontsize=10)
 
     plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(1000))
@@ -88,7 +88,7 @@ def plot(game, filename):
 
     
     if len(all_weeks) > 30:
-        plt.xticks(all_weeks[::2])  # show every 2nd week label
+        plt.xticks(all_weeks[::1])  # show every 2nd week label
 
     # text labels with vertical offset
     for i, week in enumerate(all_weeks):
@@ -107,7 +107,7 @@ def plot(game, filename):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     
-    plt.savefig(f"{game}/{game_dict[game]}_weekly_players_20260101.png")
+    plt.savefig(f"{game}/{game_dict[game]}_weekly_players_20260415.png")
     plt.show()
 
 

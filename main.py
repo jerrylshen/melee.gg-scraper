@@ -55,15 +55,30 @@ def convert_date(game, date, event_url):
     """
     # 1) Try absolute date first
     try:
-        return datetime.strptime(date, "%m/%d/%Y %I:%M %p PST") \
+        return datetime.strptime(date, "%m/%d/%Y %I:%M %p PDT") \
                        .strftime("%Y/%m/%d")
     except ValueError:
+        pass
+
+    try:
+        return datetime.strptime(date, "%m/%d/%Y %I:%M %p PST") \
+                    .strftime("%Y/%m/%d")
+    except ValueError:  
         pass
 
     # Get now in PDT (with date)
     now = datetime.now(PACIFIC)
 
-    # 2) "Last <Weekday> at … PDT"
+    # 2a) "Last <Weekday> at … PDT"
+    m = re.match(r"Last (\w+) at \d{1,2}:\d{2} [AP]M PDT", date)
+    if m:
+        target_wd = WEEKDAY_MAP[m.group(1)]
+        # how many days back to get *last* target weekday?
+        days_back = (now.weekday() - target_wd + 7) % 7 or 7
+        last_date = now - timedelta(days=days_back)
+        return last_date.strftime("%Y/%m/%d")
+    
+    # 2b) "Last <Weekday> at … PST"
     m = re.match(r"Last (\w+) at \d{1,2}:\d{2} [AP]M PST", date)
     if m:
         target_wd = WEEKDAY_MAP[m.group(1)]
@@ -125,7 +140,7 @@ def save_to_csv(data, filename):
 
     df.to_csv(f"{filename}", index=False, header=False, mode='a', encoding='utf-8')
 
-def scrape_players(game, events_filename, n_jobs):
+def scrape_players(game, events_filename, n_jobs, date_cutoff):
     players_df = get_df_from_csv(f"{game}/players.csv")
     events_df = get_df_from_csv(events_filename)
     events_diff_df = events_df
@@ -138,10 +153,10 @@ def scrape_players(game, events_filename, n_jobs):
     checked_urls_file.close()
 
     current_time = time.time()
-    Parallel(n_jobs=n_jobs)(delayed(scrape_players_helper)(game, n_jobs, current_time, index, events_diff_df, checked_event_urls) for index in range(n_jobs))
+    Parallel(n_jobs=n_jobs)(delayed(scrape_players_helper)(game, n_jobs, current_time, index, events_diff_df, checked_event_urls, date_cutoff) for index in range(n_jobs))
 
 
-def scrape_players_helper(game, n_jobs, current_time, index, events_diff_df, checked_event_urls):
+def scrape_players_helper(game, n_jobs, current_time, index, events_diff_df, checked_event_urls, date_cutoff):
     driver = init_driver()
     players_dict = {} 
     checked_urls_file = open(f"{game}/checked_urls_{index}.txt", "a+")
@@ -151,12 +166,16 @@ def scrape_players_helper(game, n_jobs, current_time, index, events_diff_df, che
         row_dict = event_row.to_dict()
         event_url = row_dict["EVENT_URL"]
         if event_url in checked_event_urls:
-            index += n_jobs
-            continue
+            break
 
         date = row_dict["DATE"]
-
-        driver.get(event_url)
+        if str(date) == date_cutoff:
+            break
+        try:
+            driver.get(event_url)
+        except:
+            index += n_jobs
+            continue
         time.sleep(5)
         if index < n_jobs:
             time.sleep(5)
@@ -303,9 +322,9 @@ def start_scrape_events(game="StarWarsUnlimited", date_cutoff="2024/08/01"):
 
     remove_duplicates_from_csv(events_filename)
 
-def start_scrape_players(game, events_filename = "combined_events_20250701"):
-    n_jobs = 4 # adjust based on your machine
-    scrape_players(game, events_filename, n_jobs)
+def start_scrape_players(game, events_filename = "combined_events_20250701", date_cutoff="2026/03/01"):
+    n_jobs = 6 # adjust based on your machine
+    scrape_players(game, events_filename, n_jobs, date_cutoff)
 
     players_filename = f"{game}/players.csv"
     remove_duplicates_from_csv(players_filename)
@@ -326,12 +345,12 @@ def start_scrape_players(game, events_filename = "combined_events_20250701"):
 def main():
     game = "StarWarsUnlimited" # Melee partnership started in 2024/09
     #game = "Lorcana" # Melee partnership started in 2024/08? and ended in 2025/07?
-    date_cutoff = "2026/01/01"
+    date_cutoff = "2026/03/01"
 
-    start_scrape_events(game, date_cutoff)
+    #start_scrape_events(game, date_cutoff)
     events_filename = f"{game}/events.csv"
-    remove_duplicates_from_csv(events_filename)
-    start_scrape_players(game, events_filename)   
+    #remove_duplicates_from_csv(events_filename)
+    start_scrape_players(game, events_filename, date_cutoff)   
 
 
 # Example usage

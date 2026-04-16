@@ -62,7 +62,7 @@ def plot(filename):
     unique_counts = [len(daily_players.get(day, set())) for day in all_days]
 
     # Plot
-    plt.figure(figsize=(40, 12))
+    plt.figure(figsize=(50, 12))
     plt.plot(all_days, total_counts, marker="o", label="Total Plays")
     plt.plot(all_days, unique_counts, marker="s", label="Unique Players")
 
@@ -100,7 +100,7 @@ def plot(filename):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
 
-    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20260101.png")
+    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20260415.png")
     plt.show()
 
 game = "StarWarsUnlimited"
