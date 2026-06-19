@@ -19,7 +19,7 @@ Each of the games' folders contains the following:
 <br><br>
 
 # Showcasing the Weekly Charts
-General Stats:
+General Stats (I stopped updating this part, see the charts for the latest numbers):
 - Star Wars Unlimited:
     - Events*: 57864
     - Players: 58683
@@ -49,10 +49,10 @@ Explanation of the Legend:
 <br><br>
 
 Star Wars Unlimited's Data:
-- Scraped on 2026/01/02
+- Scraped on 2026/06/18
 - Only scraped starting from 2024/08 and onward.
 
-![SWU Weekly Data](StarWarsUnlimited/SWU_weekly_players_20260101.png)
+![SWU Weekly Data](StarWarsUnlimited/SWU_weekly_players_20260618.png)
 
 Lorcana's Data:
 - Scraped on 2025/12/04
