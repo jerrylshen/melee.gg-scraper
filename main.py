@@ -345,9 +345,9 @@ def start_scrape_players(game, events_filename = "combined_events_20250701", dat
 def main():
     game = "StarWarsUnlimited" # Melee partnership started in 2024/09
     #game = "Lorcana" # Melee partnership started in 2024/08? and ended in 2025/07?
-    date_cutoff = "2026/03/01"
+    date_cutoff = "2026/06/18" #inclusive
 
-    #start_scrape_events(game, date_cutoff)
+    start_scrape_events(game, date_cutoff)
     events_filename = f"{game}/events.csv"
     #remove_duplicates_from_csv(events_filename)
     start_scrape_players(game, events_filename, date_cutoff)   
