@@ -52,7 +52,7 @@ Star Wars Unlimited's Data:
 - Scraped on 2026/06/18
 - Only scraped starting from 2024/08 and onward.
 
-![SWU Weekly Data](StarWarsUnlimited/SWU_weekly_players_20260618.png)
+![SWU Weekly Data](StarWarsUnlimited/SWU_weekly_players_20260810.png)
 
 Lorcana's Data:
 - Scraped on 2025/12/04
