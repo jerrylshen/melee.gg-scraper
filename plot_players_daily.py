@@ -100,7 +100,7 @@ def plot(filename):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
 
-    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20260803.png")
+    plt.savefig(f"{game}/{game_dict[game]}_daily_players_20260810.png")
     plt.show()
 
 game = "StarWarsUnlimited"
